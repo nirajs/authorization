@@ -19,7 +19,7 @@ var authenticate=function ensureAuthenticated(req, res, next){
 	} else {
 		res.send({ result: "Failure", message: "Oath Required"});
     //res.send('/users/login');
-    return;
+    return  next();;
 	}
 }
 
@@ -29,8 +29,18 @@ var getUserFromToken=function(token){
   return decoded;
 }
 
+var isLoggedIn = function isLoggedIn(req, res, next) {
+    	if(req.isAuthenticated()){
+    		return next();
+    	}
+
+    	res.redirect('/login');
+}
+
+
 
 module.exports = {
     authenticate: authenticate,
-    getUser: getUserFromToken
+    getUser: getUserFromToken,
+    isLoggedIn: isLoggedIn
 }

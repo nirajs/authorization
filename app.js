@@ -2,6 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
+var Config = require('./config/config');
+var passport = require('passport');
+var Strategy = require('passport-facebook').Strategy;
 
 // Init App
 var app = express();
@@ -21,6 +24,10 @@ var users = require('./routes/user');
 // Router Setup
 app.use('/', users);
 
+// Configure view engine to render EJS templates.
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 
 // Cros origin for mobile etc.
 app.use(function(req, res, next) {
@@ -30,8 +37,32 @@ app.use(function(req, res, next) {
 });
 
 // DB Setup
-mongoose.connect('mongodb://localhost/auth');
+mongoose.connect(Config.dbconnect);
 var db = mongoose.connection;
+
+//
+app.use(passport.initialize());
+
+// Define routes.
+app.get('/login',
+  function(req, res) {
+    res.render('login', { user: req.user });
+  });
+
+  app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+  // the callback after google has authenticated the user
+    app.get('/auth/google/callback',
+            passport.authenticate('google', {
+                    successRedirect : '/profile',
+                    failureRedirect : '/',
+                    session: false
+            }));
+
+
+  //app.get('/auth/google',  function(req, res) {
+  //    res.render('home', { user: req.user });
+  //  });
 
 
 

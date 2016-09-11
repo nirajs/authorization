@@ -11,7 +11,11 @@ var auth = require('../config/auth.js');
 
 // Login
 router.get('/', auth.authenticate,  function(req, res) {
-    res.send('Hello there');
+    res.send('Hello there You are so authenticated');
+});
+
+router.get('/hi', auth.isLoggedIn,  function(req, res) {
+    res.send('Hello there You are so authenticated via gmail');
 });
 
 router.post('/signup', function(req, res) {

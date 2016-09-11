@@ -1,17 +1,17 @@
 // TODO change the reference of localhost to the real server address
 // TODO remove this file from github
 module.exports = {
-    'db': 'mongodb://localhost/onda',
+    'dbconnect': 'mongodb://localhost/auth',
     'secretKey': 'whatever',
     'facebook': {
-        'AppID': '1807765906116990',
-        'AppSecret' : '9b6e517ea36598ac4e98df1e7246eaab',
-        'callbackUrl': 'http://localhost:3000/auth/facebook/callback',
+        'AppID': '1130177717107903',
+        'AppSecret' : 'aed376951dd13c25688a2cc7af56329d',
+        'callbackURL': 'http://localhost:4000/auth/facebook/callback',
         'profileFields': ['id', 'emails', 'first_name', 'middle_name', 'last_name']
     },
     'google': {
-        'clientID': '316573529654-6j48e3fon0qhtqd2cl2d840a76cs9i1e.apps.googleusercontent.com',
-        'clientSecret': 'WLFwSRuVNZGj8W8Ageg2vYJI',
-        'callbackUrl': 'http://localhost:3000/auth/google/callback'
+        'clientID': '430964866951-a7sqdh8cmd8psd6upsoog1lk0jh08ke5.apps.googleusercontent.com',
+        'clientSecret': 'A_7f2MiADRfrAfhTgHWoPJQK',
+        'callbackURL': 'http://localhost:4000/auth/google/callback'
     }
 };
