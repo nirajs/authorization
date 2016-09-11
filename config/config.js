@@ -10,7 +10,7 @@ module.exports = {
         'profileFields': ['id', 'emails', 'first_name', 'middle_name', 'last_name']
     },
     'google': {
-        'clientID': ''secret',
+        'clientID': 'secret',
         'clientSecret': 'secret',
         'callbackURL': 'http://localhost:4000/auth/google/callback'
     }
